@@ -85,6 +85,8 @@ class MPPI_Genesis(ABC):
         # Shift actions forward in sync mode 
         self.U_nom = self.control_interpolations(self.knots_steps, self.U_nom, self.knots_steps + shift_time)
 
+        self.reset_plan()
+        
         for _ in range(iterations):
             # Repeat the current action plan from the agent environments since we need to sample
             actions_sampled = torch.repeat_interleave(self.U_nom, self.num_samples_per_env, dim=0)

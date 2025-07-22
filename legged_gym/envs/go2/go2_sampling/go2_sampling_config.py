@@ -123,8 +123,8 @@ class GO2RoughCfgSampling( LeggedRobotCfg ):
     class control( LeggedRobotCfg.control ):
         # PD Drive parameters:
         # control_type = 'P'
-        stiffness = {'joint': 30.}   # [N*m/rad]
-        damping = {'joint': 0.0}     # [N*m*s/rad]
+        stiffness = {'joint': 20.}   # [N*m/rad]
+        damping = {'joint': 0.5}     # [N*m*s/rad]
         action_scale = 1.0 # 0.25 # action scale: target angle = actionScale * action + defaultAngle
         dt =  0.02  # control frequency 50Hz
         decimation = 4 # decimation: Number of control action updates @ sim DT per policy DT

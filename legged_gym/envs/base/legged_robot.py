@@ -66,6 +66,7 @@ class LeggedRobot(BaseTask):
         if self.cfg.sim.use_dial_controller:
             for _ in range(self.cfg.control.decimation):
                 self.torques = self.act2tau(exec_actions)
+                # self.torques = self._compute_torques(exec_actions)
                 if self.num_build_envs == 0:
                     torques = self.torques.squeeze()
                     self.robot.control_dofs_force(torques, self.motor_dofs)

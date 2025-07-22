@@ -21,12 +21,12 @@ def play(args):
     
     # create the agent environment
     env_cfg, planner_cfg = task_registry.get_cfgs(name=args.task)
-    
+
     # create planner environment
     rollout_env_cfg = copy.deepcopy(env_cfg)
     rollout_env_cfg.env.num_envs = env_cfg.env.num_envs * planner_cfg.planner.num_samples
     rollout_env_cfg.env.force_reset = False
-    rollout_env_cfg.control.decimation = 2
+    # rollout_env_cfg.control.decimation = 2
 
     # set planner environment
     rollout_env, _ = task_registry.make_env(name=args.task, args=args, env_cfg=rollout_env_cfg)
@@ -40,10 +40,13 @@ def play(args):
     planner = MPPI_Genesis(rollout_env, env_cfg, planner_cfg)
     
     # since we are using sync version, the shift time will always be control dt 
-    shift_time = env_cfg.control.dt
+    shift_time = env_cfg.control.dt 
 
     early_termination = False
     initialized = False
+
+    # import pdb; pdb.set_trace()
+
     with torch.inference_mode():
         sim_env.start_recording(record_internal=False)
         for i in tqdm(range(400)):
