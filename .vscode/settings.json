@@ -1,3 +1,4 @@
 {
     "ros.distro": "foxy"
+    "python.analysis.extraPaths": ["/home/yilang/research/Genesis"]
 }
